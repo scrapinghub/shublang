@@ -89,7 +89,6 @@ Shublang will look to support the following language features and functions.
 |any                                  |
 |exists                               |
 |none                                 |
-|single                               |
 
 
 |Scalar Functions                     |
@@ -120,8 +119,6 @@ Shublang will look to support the following language features and functions.
 |filter        |
 |sort          |
 |slice         |
-|append        |
-|extend        |
 |chain         |
 |chain_with    |
 |tail          |
@@ -132,7 +129,6 @@ Shublang will look to support the following language features and functions.
 |abs                   |
 |ceil                  |
 |floor                 |
-|rand                  |
 |round                 |
 
 |String Functions|
@@ -148,8 +144,8 @@ Shublang will look to support the following language features and functions.
 |endswith        |
 |encode          |
 |decode          | 
-|is_digit        |
-|is_decimal      |
+|isdigit         |
+|isdecimal       |
 |rstrip          |
 |lstrip          |
 
@@ -162,11 +158,11 @@ Shublang will look to support the following language features and functions.
 |HTML and JSON Functions|
 |-----------------------|
 |jmespath               |
-|remove_html            |
-|clean_text             |
-|xpath                  |
-|css                    |
-|table                  |
+|sanitize               |
+|xpath_getall           |
+|xpath_get              |
+|css_getall             |
+|css_get                |
 
 
 
