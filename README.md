@@ -65,11 +65,10 @@ General rule of thumb is to think of Shublang pipes as the code that is written 
 
 ## Features
 
-Batteries included for quick and easy text extraction
-Clean functional design
-Pluggable architecture for adding custom functions
-Directly translates to Javascript
-Tracing to aid debugging
+- Batteries included for quick and easy text extraction
+- Pluggable design for adding custom functions
+- Executes in Javascript (to be implemented)
+- Tracing to aid debugging (to be implemented)
 
 
 Shublang will look to support the following language features and functions.
