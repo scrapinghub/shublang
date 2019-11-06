@@ -20,8 +20,7 @@ another alternative.
 
 ## Example
 
-Here is some Python [code](https://bitbucket.org/scrapinghub/smartersorting/src/f9b437f55b4895e9d9b88a8fae1d9462ab76c793/smartersorting/spiders/heb_com.py#lines-25) 
-to extract data from a web page
+Here is a typical Python code to transform data extracted from a page
 
 ```python
 
