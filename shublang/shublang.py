@@ -1,9 +1,10 @@
 from pipe import *
 from w3lib.html import replace_entities, remove_tags
 import re
-import json
 import jmespath as jp
 from parsel import Selector
+import builtins
+import math
 
 """
 Conventions
@@ -16,8 +17,8 @@ are used just once.
 
 # TODO
 """
-Add context variables such as URL which that be required in urljoin operation
-Alternatively, should this be handled in the traversal code
+Add context variables such as URL that will be required for urljoin operation
+Alternatively, should this be handled in the traversal code?
 
 """
 
@@ -49,15 +50,102 @@ def sanitize(iterable):
 
 
 @Pipe
-def xpath_getall(iterable, query):
-    return (Selector(x).xpath(query).getall() for x in iterable)
+def xpath_getall(iterable, pred):
+    return builtins.map(lambda x: Selector(x).xpath(pred).getall(), iterable)
 
 
 @Pipe
-def xpath_get(iterable, query):
-    return (Selector(x).xpath(query).get() for x in iterable)
+def xpath_get(iterable, pred):
+    return builtins.map(lambda x: Selector(x).xpath(pred).get(), iterable)
+
+@Pipe
+def css_getall(iterable, pred):
+    return builtins.map(lambda x: Selector(x).css(pred).getall(), iterable)
+
+@Pipe
+def css_get(iterable, pred):
+    return builtins.map(lambda x: Selector(x).css(pred).get(), iterable)
 
 
 @Pipe
 def jmespath(iterable, query):
     return (jp.search(query, x) for x in iterable)
+
+@Pipe
+def any(iterable):
+    return builtins.any(iterable)
+
+@Pipe
+def all(iterable):
+    return builtins.all(iterable)
+
+@Pipe
+def exists(iterable, pred):
+    if pred in iterable:
+        return True
+    else:
+        return False
+
+@Pipe
+def none(iterable, pred):
+    if pred not in iterable:
+        return True
+    else:
+        return False
+
+@Pipe
+def length(iterable):
+    return len(iterable)
+
+@Pipe
+def bool(iterable):
+    return builtins.map(lambda x: builtins.bool(x), iterable)
+
+@Pipe
+def float(iterable):
+    return builtins.map(lambda x: builtins.float(x), iterable)
+
+
+@Pipe
+def int(iterable):
+    return builtins.map(lambda x: builtins.int(x), iterable)
+
+@Pipe
+def abs(iterable):
+    return builtins.map(lambda x: builtins.abs(x), iterable)
+
+@Pipe
+def ceil(iterable):
+    return builtins.map(lambda x: math.ceil(x), iterable)
+
+@Pipe
+def round(iterable, pred):
+    return builtins.map(lambda x: builtins.round(x, pred), iterable)
+
+@Pipe
+def join(iterable, separator=", "):
+    return separator.join(builtins.map(str, iterable))
+
+@Pipe
+def capitalize(iterable):
+    return builtins.map(lambda x: x.capialize, iterable)
+
+
+@Pipe
+def isdigit(iterable):
+    return builtins.map(lambda x: x.isdigit(), iterable)
+
+
+@Pipe
+def isdecimal(iterable):
+    return builtins.map(lambda x: x.isdecimal(), iterable)
+
+@Pipe
+def startswith(iterable, pred):
+    return builtins.map(lambda x: x.startswith(pred), iterable)
+
+@Pipe
+def endswith(iterable, pred):
+    return builtins.map(lambda x: x.endswith(pred), iterable)
+
+filter = where
