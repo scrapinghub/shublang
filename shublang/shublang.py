@@ -5,6 +5,7 @@ import jmespath as jp
 from parsel import Selector
 import builtins
 import math
+import json
 
 """
 Conventions
@@ -147,5 +148,15 @@ def startswith(iterable, pred):
 @Pipe
 def endswith(iterable, pred):
     return builtins.map(lambda x: x.endswith(pred), iterable)
+
+@Pipe
+def re_search(iterable, pattern):
+    #return (re.sub(pattern, repl, x) for x in iterable)
+    iterable =  builtins.map(lambda x: re.search(pattern, x), iterable)
+    return builtins.map(lambda x: x.groups() if x else None, iterable)
+
+@Pipe
+def json_loads(iterable):
+    return builtins.map(lambda x: json.loads(x), iterable)
 
 filter = where
