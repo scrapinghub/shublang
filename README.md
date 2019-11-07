@@ -137,6 +137,7 @@ Shublang will look to support the following language features and functions.
 |find            |
 |capitalize      |
 |strip           |
+|sub             | 
 |replace         |
 |startswith      |
 |endswith        |
@@ -146,6 +147,7 @@ Shublang will look to support the following language features and functions.
 |isdecimal       |
 |rstrip          |
 |lstrip          |
+|re_search       |
 
 
 |Temporal Functions|
@@ -156,6 +158,7 @@ Shublang will look to support the following language features and functions.
 |HTML and JSON Functions|
 |-----------------------|
 |jmespath               |
+|json_loads             |
 |sanitize               |
 |xpath_getall           |
 |xpath_get              |
