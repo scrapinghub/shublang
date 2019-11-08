@@ -129,7 +129,7 @@ def join(iterable, separator=", "):
 
 @Pipe
 def capitalize(iterable):
-    return builtins.map(lambda x: x.capialize(), iterable)
+    return builtins.map(lambda x: x.capitalize(), iterable)
 
 
 @Pipe

@@ -7,11 +7,11 @@ Clear semantics makes for code that is easily understandable by non-technical bu
 Also the grammar is terse enough for automatic generation through user guided interactions.
 
 ## Specification
-Interpreted in Python. 
+Pure Python 
 
-Directly translated or compiled to JS. The developer should have all the tools to debug the pipe in the browser.
+Directly translated or compiled to JS. Enables developer to debug pipe in the browser.
 
-Encompass Python built-ins, list and string methods, important functions from Cypher, JMESPath, XPath etc.
+Encompasses Python built-ins, list and string methods, cherry-picked functions from Cypher, JMESPath, XPath etc.
 
 Proof of concept built using [pipe](https://github.com/JulienPalard/Pipe) 
 
