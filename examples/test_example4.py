@@ -10,4 +10,3 @@ def test_example_4():
     data = sel.xpath('//script[contains(., "pidData")]/text()').extract()
 
     assert evaluate('re_search(\'"pidData":({.*}),"msgs":\')|first|json_loads|jmespath("pid")|first', data) == '10001'
-

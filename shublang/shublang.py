@@ -6,6 +6,7 @@ from parsel import Selector
 import builtins
 import math
 import json
+import logging
 
 """
 Conventions
@@ -22,6 +23,8 @@ Add context variables such as URL that will be required for urljoin operation
 Alternatively, should this be handled in the traversal code?
 
 """
+
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 @Pipe
 def sub(iterable, pattern, repl=None):
@@ -160,3 +163,10 @@ def json_loads(iterable):
     return builtins.map(lambda x: json.loads(x), iterable)
 
 filter = where
+map = select
+
+def evaluate(expression, data):
+    # TODO use StatementParser.is_safe before evaluating code.
+    # if StatementParser.is_safe(expression):
+    # FIXME DANGEROUS!! Only for POC. This needs to be reimplemented using Lark.
+    return eval(f'data|{expression}')
