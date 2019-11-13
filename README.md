@@ -168,7 +168,7 @@ Shublang will look to support the following language features and functions.
 
 Shublang provides a command line utility to verify expression
 
-```commandline
+```console
 $ shublang 'add' [1,2]
 3
 
