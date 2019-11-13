@@ -35,6 +35,7 @@ def fetch_data(url):
 
 
 def execute_from_command_line():
+
     parser = argparse.ArgumentParser(description='Evaluate shublang expression')
     group = parser.add_mutually_exclusive_group(required=True)
     parser.add_argument('expression', help='Shublang expression to be evaluated')
@@ -43,7 +44,6 @@ def execute_from_command_line():
     group.add_argument('--url', dest='url', help='URL of the website from which content needs to be fetched')
     parser.add_argument('--verbose', help='Enable tracing', action='store_true' )
     args = parser.parse_args()
-    print(args)
     data = args.data
     if not args.data:
         data = [fetch_data(args.url)]

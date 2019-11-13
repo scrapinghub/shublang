@@ -166,6 +166,19 @@ Shublang will look to support the following language features and functions.
 |css_get                |
 
 
+Shublang provides a command line utility to verify expression
+
+```commandline
+$ shublang 'add' [1,2]
+3
+
+$ shublang "xpath_get('//script[contains(., \"pidData\")]/text()') \
+|re_search('\"pidData\":({.*}),\"msgs\":')|first|json_loads|jmespath('pid')|first" \
+ --url https://www.crocs.com/p/classic-clog/10001.html
+10001
+
+```
+
 
 ## Next Steps and Research
 

@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages
 
+exclude = ['examples']
 
 setup(
     name='shublang',
@@ -8,8 +9,14 @@ setup(
     description='Shublang - Data Extraction DSL',
     author='Akshay',
     author_email='akshay@scrapinghub.com',
-    packages=['shublang'],
-    package_data={'shublang': ['*.py']},
+    packages=find_packages(exclude=exclude),
+    #package_data={'shublang': ['*.py']},
+    include_package_data=True,
+    entry_points={
+        'console_scripts': [
+            'shublang = shublang.cmdline:execute_from_command_line'
+        ]
+    },
     platforms=['Any'],
     classifiers=[
         'Development Status :: 4 - Beta',
