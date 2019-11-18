@@ -31,6 +31,7 @@ setup(
     install_requires=[
         'pipe >= 1.5.0',
         'jmespath >= 0.9.4',
-
+        'w3lib >= 1.21.0',
+        'parsel >= 1.5.2',
     ]
 )
