@@ -166,7 +166,7 @@ Shublang will look to support the following language features and functions.
 |css_get                |
 
 
-Shublang provides a command line utility to verify expression
+Shublang provides a command line utility to verify an expression
 
 ```console
 $ shublang 'add' [1,2]
