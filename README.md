@@ -1,5 +1,7 @@
 # Shublang (work in progress)
 
+[![CircleCI](https://circleci.com/gh/scrapinghub/shublang.svg?style=svg&circle-token=fa16d1782c6f8a8ead98e8bd8e591c0572a9f99d)](https://circleci.com/gh/scrapinghub/shublang)
+
 Pluggable DSL that uses pipes to perform a series of linear transformations to extract data. Provides several Python 
 built-ins, list, string methods, JMESPath, XPath functions as well as allows creation of custom functions.  
 
