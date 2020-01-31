@@ -4,7 +4,7 @@ exclude = ['examples']
 
 setup(
     name='shublang',
-    version='0.1.0',
+    version='0.1.1',
     license='BSD',
     description='Shublang - Data Extraction DSL',
     author='Akshay',

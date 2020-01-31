@@ -7,6 +7,7 @@ import builtins
 import math
 import json
 import logging
+import dateparser
 
 """
 Conventions
@@ -161,6 +162,10 @@ def re_search(iterable, pattern):
 @Pipe
 def json_loads(iterable):
     return builtins.map(lambda x: json.loads(x), iterable)
+
+@Pipe
+def date_format(iterable, fmt):
+    return (dateparser.parse(item).strftime(fmt) for item in iterable)
 
 filter = where
 map = select

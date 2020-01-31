@@ -44,3 +44,6 @@ def test_startswith():
 def test_endswith():
     assert list(evaluate('endswith("a")', ["andrew", "alex", "akshay"])) == [False, False, False]
     assert list(evaluate('endswith("b")', ["Rob"])) == [True]
+
+def test_date_format():
+    assert evaluate('date_format("%Y-%m-%d")|first', data=['15th August 2016']) == '2016-08-15'

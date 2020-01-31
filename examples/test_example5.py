@@ -1,7 +1,7 @@
 from shublang import evaluate
 from parsel import Selector
 
-def test_example_4():
+def test_example_5():
     with open('examples/resources/test_example_5.html', 'r') as f:
         html = f.read()
 
