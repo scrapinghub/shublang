@@ -8,6 +8,7 @@ import math
 import json
 import logging
 import dateparser
+from price_parser import Price
 
 """
 Conventions
@@ -166,6 +167,14 @@ def json_loads(iterable):
 @Pipe
 def date_format(iterable, fmt):
     return (dateparser.parse(item).strftime(fmt) for item in iterable)
+
+@Pipe
+def extract_price(iterable):
+    return (str(Price.fromstring(item).amount) for item in iterable)
+
+@Pipe
+def extract_currency(iterable):
+    return (Price.fromstring(item).currency for item in iterable)
 
 filter = where
 map = select

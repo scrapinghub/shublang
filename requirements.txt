@@ -11,6 +11,7 @@ packaging==19.2
 parsel==1.5.2
 pipe==1.5.0
 pluggy==0.13.0
+price-parser==0.3.2
 py==1.8.0
 pyparsing==2.4.2
 pytest==5.2.1
