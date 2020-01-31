@@ -33,5 +33,7 @@ setup(
         'jmespath >= 0.9.4',
         'w3lib >= 1.21.0',
         'parsel >= 1.5.2',
+        'dateparser >= 0.7.2',
+        'price-parser >= 0.3.2',
     ]
 )
