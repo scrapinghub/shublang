@@ -44,3 +44,24 @@ def test_startswith():
 def test_endswith():
     assert list(evaluate('endswith("a")', ["andrew", "alex", "akshay"])) == [False, False, False]
     assert list(evaluate('endswith("b")', ["Rob"])) == [True]
+
+def test_date_format():
+    assert evaluate('date_format("%Y-%m-%d")|first', data=['15th August 2016']) == '2016-08-15'
+
+def test_price_1():
+    assert evaluate('extract_price|first', data=['22,90 €']) == '22.90'
+
+def test_price_2():
+    assert evaluate('extract_price|first', data=['$1,199.00']) == '1199.00'
+
+def test_price_3():
+    assert evaluate('extract_price|first', data=['$12']) == '12'
+
+def test_price_4():
+    assert evaluate('extract_price|first', data=['12.000,95']) == '12000.95'
+
+def test_currency_1():
+    assert evaluate('extract_currency|first', data=['22,90 €']) == '€'
+
+def test_currency_2():
+    assert evaluate('extract_currency|first', data=['$1,199.00']) == '$'

@@ -7,6 +7,8 @@ import builtins
 import math
 import json
 import logging
+import dateparser
+from price_parser import Price
 import types
 
 """
@@ -162,6 +164,18 @@ def re_search(iterable, pattern):
 @Pipe
 def json_loads(iterable):
     return builtins.map(lambda x: json.loads(x), iterable)
+
+@Pipe
+def date_format(iterable, fmt):
+    return (dateparser.parse(item).strftime(fmt) for item in iterable)
+
+@Pipe
+def extract_price(iterable):
+    return (str(Price.fromstring(item).amount) for item in iterable)
+
+@Pipe
+def extract_currency(iterable):
+    return (Price.fromstring(item).currency for item in iterable)
 
 filter = where
 map = select
