@@ -60,20 +60,20 @@ def sanitize(iterable):
 
 @Pipe
 def xpath_getall(iterable, pred):
-    return builtins.map(lambda x: Selector(x).xpath(pred).getall(), iterable)
+    return (Selector(x).xpath(pred).getall() for x in iterable)
 
 
 @Pipe
 def xpath_get(iterable, pred):
-    return builtins.map(lambda x: Selector(x).xpath(pred).get(), iterable)
+    return (Selector(x).xpath(pred).get() for x in iterable)
 
 @Pipe
 def css_getall(iterable, pred):
-    return builtins.map(lambda x: Selector(x).css(pred).getall(), iterable)
+    return (Selector(x).css(pred).getall() for x in iterable)
 
 @Pipe
 def css_get(iterable, pred):
-    return builtins.map(lambda x: Selector(x).css(pred).get(), iterable)
+    return (Selector(x).css(pred).get() for x in iterable)
 
 
 @Pipe
@@ -108,28 +108,28 @@ def length(iterable):
 
 @Pipe
 def bool(iterable):
-    return builtins.map(lambda x: builtins.bool(x), iterable)
+    return (builtins.bool(x) for x in iterable)
 
 @Pipe
 def float(iterable):
-    return builtins.map(lambda x: builtins.float(x), iterable)
+    return (builtins.float(x) for x in iterable)
 
 
 @Pipe
 def int(iterable):
-    return builtins.map(lambda x: builtins.int(x), iterable)
+    return (builtins.int(x) for x in iterable)
 
 @Pipe
 def abs(iterable):
-    return builtins.map(lambda x: builtins.abs(x), iterable)
+    return (builtins.abs(x) for x in iterable)
 
 @Pipe
 def ceil(iterable):
-    return builtins.map(lambda x: math.ceil(x), iterable)
+    return (math.ceil(x) for x in iterable)
 
 @Pipe
 def round(iterable, pred):
-    return builtins.map(lambda x: builtins.round(x, pred), iterable)
+    return (builtins.round(x, pred) for x in iterable)
 
 @Pipe
 def join(iterable, separator=", "):
@@ -137,35 +137,35 @@ def join(iterable, separator=", "):
 
 @Pipe
 def capitalize(iterable):
-    return builtins.map(lambda x: x.capitalize(), iterable)
+    return (x.capitalize() for x in iterable)
 
 
 @Pipe
 def isdigit(iterable):
-    return builtins.map(lambda x: x.isdigit(), iterable)
+    return (x.isdigit() for x in iterable)
 
 
 @Pipe
 def isdecimal(iterable):
-    return builtins.map(lambda x: x.isdecimal(), iterable)
+    return (x.isdecimal() for x in iterable)
 
 @Pipe
 def startswith(iterable, pred):
-    return builtins.map(lambda x: x.startswith(pred), iterable)
+    return (x.startswith(pred) for x in iterable)
 
 @Pipe
 def endswith(iterable, pred):
-    return builtins.map(lambda x: x.endswith(pred), iterable)
+    return (x.endswith(pred) for x in iterable)
 
 @Pipe
 def re_search(iterable, pattern):
     #return (re.sub(pattern, repl, x) for x in iterable)
     iterable =  builtins.map(lambda x: re.search(pattern, x), iterable)
-    return builtins.map(lambda x: x.groups() if x else None, iterable)
+    return (x.groups() if x else None for x in iterable)
 
 @Pipe
 def json_loads(iterable):
-    return builtins.map(lambda x: json.loads(x), iterable)
+    return (json.loads(x) for x in iterable)
 
 @Pipe
 def date_format(iterable, fmt):
