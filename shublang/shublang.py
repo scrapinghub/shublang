@@ -31,6 +31,8 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 @Pipe
 def sub(iterable, pattern, repl=None):
+    if not repl:
+        repl = ""
     return (re.sub(pattern, repl, x) for x in iterable)
 
 
