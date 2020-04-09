@@ -61,25 +61,21 @@ def test_replace(test_input, expected):
             ['format("Now Playing: {} and {}")', [['Rick', 'Morty']]],
             ['Now Playing: Rick and Morty']
         ),
-
         # Ordering should be respected
         (
             ['format("{2}, {1}, and {0}")', [['a', 'b', 'c']]],
             ['c, b, and a']
         ),
-
         # Lists of lists are aggregated into a list
         (
             ['format("{} and some value {}")', [[1, 2], ['x', 'y']]],
             ['1 and some value 2', 'x and some value y']
         ),
-
         # Args could be repeated
         (
             ['format("{0}--{0}-{1}!")', [['Re', 'Remix']]],
             ['Re--Re-Remix!']
         ),
-
         # Standard Formatting should work
         (
             ['format("{:.2f}")', [[7/3]]],
@@ -89,6 +85,54 @@ def test_replace(test_input, expected):
 )
 def test_format(test_input, expected):
     assert evaluate(*test_input) == expected
+
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['append("new thing")', ['A', 'B']],
+            ['A', 'B', 'new thing']
+        ),
+        # list could be added as a single item
+        (
+            ['append([1, 2, "3"])', ['A', 'B']],
+            ['A', 'B', [1, 2, '3']]
+        ),
+    ]
+)
+def test_append(test_input, expected):
+    assert evaluate(*test_input) == expected
+
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['extend([1, 2, "3"])', ['A', 'B']],
+            ['A', 'B', 1, 2, '3']
+        ),
+        # generators will also work
+        (
+            ['extend(range(3, 6))', ['A', 'B']],
+            ['A', 'B', 3, 4, 5]
+        ),
+        # single strings are treated as iterables
+        (
+            ['extend("new")', ['A', 'B']],
+            ['A', 'B', 'n', 'e', 'w']
+        ),
+    ]
+)
+def test_extend(test_input, expected):
+    assert evaluate(*test_input) == expected
+
+
+def test_extend_with_non_iterable():
+    """It should raise a TypeError."""
+
+    with pytest.raises(TypeError):
+        evaluate("extend(123)", ['A', 'B'])
 
 
 def test_encode():
@@ -110,7 +154,7 @@ def test_decode():
             ['split(",")', ['Python,Haskell,Scala,Rust']],
             [['Python', 'Haskell', 'Scala', 'Rust']]
         ),
-        
+
         # maxsplit should limit the number of separations
         (
             ['split(",", 2)', ['Python,Haskell,Scala,Rust']],

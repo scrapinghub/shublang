@@ -88,6 +88,35 @@ def format(iterable, template):
 
 
 @Pipe
+def append(iterable, data):
+    """Appends data to the iterable.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param data: any type of data to be appended
+    """
+
+    iterable.append(data)
+    return iterable
+
+
+@Pipe
+def extend(iterable, extension):
+    """Extends the iterable using another iterable.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param extension: contains the additional iterable to extend the current one
+    :param extension: iterable
+    """
+
+    iterable.extend(extension)
+    return iterable
+
+
+@Pipe
 def encode(iterable, encoding, errors='ignore'):
     return (x.encode(encoding, errors=errors) for x in iterable)
 
