@@ -186,7 +186,7 @@ def evaluate(expression, data):
     # TODO use StatementParser.is_safe before evaluating code.
     # if StatementParser.is_safe(expression):
     # FIXME DANGEROUS!! Only for POC. This needs to be reimplemented using Lark.
-    data = eval(f'data|{expression}')
+    data = eval(f'{data}|{expression}')
     if isinstance(data, (types.GeneratorType, builtins.map)):
         data = list(data)
     return data
