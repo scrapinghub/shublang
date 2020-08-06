@@ -47,6 +47,30 @@ def decode(iterable, encoding):
 
 
 @Pipe
+def find(iterable, sub, start=None, end=None):
+    """Returns the lowest index in the string where the sub is found.
+    If specified, the start and end params serve to slice the string 
+    where sub should be searched.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param sub: the substring to search for.
+    :type sub: string
+
+    :param start: (optional) where to start the search. Default to 0.
+    :type start: int
+
+    :param end: (optional) where to end the search. Default to the
+    end of the string.
+    :type end: int
+    """
+
+
+    return (x.find(sub, start, end) for x in iterable)
+
+
+@Pipe
 def sanitize(iterable):
     # TODO change name and add other options
 

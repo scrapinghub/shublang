@@ -1,5 +1,6 @@
 # TODO add tests for functions
 
+import pytest
 from shublang import evaluate
 
 def test_sub():
@@ -20,6 +21,31 @@ def test_decode():
     text = b'\xe1\xbc\x80\xe1\xbc\x90\xe1\xbc\xa0\xe1\xbc\xb0\xe1\xbd\x80\xe1\xbd\x90\xe1\xbd\xa0\xe1\xbd\xb0\xe1' \
            b'\xbe\x80\xe1\xbe\x90'
     assert evaluate('decode("UTF8")', data=[text]) == ["ἀἐἠἰὀὐὠὰᾀᾐ"]
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        # should find at the entire string
+        (
+            ['find("th")', ['Python']],
+            [2]
+        ),
+
+        # should respect where the search starts
+        (
+            ['find("th", 3)', ['Python']],
+            [-1]
+        ),
+
+        # should respect where the search ends
+        (
+            ['find("th", 0, 1)', ['Python']],
+            [-1]
+        ),
+    ]
+)
+def test_find(test_input, expected):
+    assert evaluate(*test_input) == expected
 
 def test_sanitize():
     text = ["Python \t\t\t\t",
