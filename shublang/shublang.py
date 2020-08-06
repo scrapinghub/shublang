@@ -29,16 +29,31 @@ Alternatively, should this be handled in the traversal code?
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
+
 @Pipe
 def sub(iterable, pattern, repl=None):
-    if not repl:
-        repl = ""
+    """Replaces a substring with another substring using regular expressions.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param pattern: regular expression to match and be replaced
+    :type pattern: string
+
+    :param repl: (optional) the replacement substring
+    :type rep: string
+    """
+
+    repl = repl or ""
     return (re.sub(pattern, repl, x) for x in iterable)
 
 
 @Pipe
 def replace(iterable, old, new, count=None):
     """Replaces a substring with another substring.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
 
     :param old: substring to be replaced
     :type old: string
