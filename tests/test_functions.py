@@ -1,5 +1,6 @@
 # TODO add tests for functions
 
+import pytest
 from shublang import evaluate
 
 def test_sub():
@@ -20,6 +21,26 @@ def test_decode():
     text = b'\xe1\xbc\x80\xe1\xbc\x90\xe1\xbc\xa0\xe1\xbc\xb0\xe1\xbd\x80\xe1\xbd\x90\xe1\xbd\xa0\xe1\xbd\xb0\xe1' \
            b'\xbe\x80\xe1\xbe\x90'
     assert evaluate('decode("UTF8")', data=[text]) == ["ἀἐἠἰὀὐὠὰᾀᾐ"]
+
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['split(",")', ['Python,Haskell,Scala,Rust']],
+            [['Python', 'Haskell', 'Scala', 'Rust']]
+        ),
+        
+        # maxsplit should limit the number of separations
+        (
+            ['split(",", 2)', ['Python,Haskell,Scala,Rust']],
+            [['Python', 'Haskell', 'Scala,Rust']]
+        ),
+    ]
+)
+def test_split(test_input, expected):
+    assert evaluate(*test_input) == expected
+
 
 def test_sanitize():
     text = ["Python \t\t\t\t",

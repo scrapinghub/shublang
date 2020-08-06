@@ -47,6 +47,25 @@ def decode(iterable, encoding):
 
 
 @Pipe
+def split(iterable, sep, maxsplit=-1):
+    """Returns a list of words in the string, using sep as the delimiter.
+    If maxsplit is given, at most maxsplit splits are done.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param sep: this is a delimiter. The string will be split by this separator.
+    :type sep: string
+
+    :param maxsplit: (optional) if given, there will be at most maxsplit splits.
+    :type maxsplit: int
+    """
+
+
+    return (x.split(sep, maxsplit) for x in iterable)
+
+
+@Pipe
 def sanitize(iterable):
     # TODO change name and add other options
 
