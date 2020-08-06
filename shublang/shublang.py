@@ -37,6 +37,29 @@ def sub(iterable, pattern, repl=None):
 
 
 @Pipe
+def replace(iterable, old, new, count=None):
+    """Replaces a substring with another substring.
+
+    :param old: substring to be replaced
+    :type old: string
+
+    :param new: the replacement substring
+    :type new: string
+
+    :param count: (optional) The first n substring occurrences to be replaced
+    :type count: int
+
+    NOTE: This doesn't support regular expressions which makes it safer and
+    easier. If you need regular expressions, make use :func:`sub` which supports
+    it.
+    """
+
+    if count:
+        return (x.replace(old, new, count) for x in iterable)
+    return (x.replace(old, new) for x in iterable)
+
+
+@Pipe
 def encode(iterable, encoding, errors='ignore'):
     return (x.encode(encoding, errors=errors) for x in iterable)
 

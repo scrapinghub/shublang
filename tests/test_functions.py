@@ -1,5 +1,6 @@
 # TODO add tests for functions
 
+import pytest
 from shublang import evaluate
 
 def test_sub():
@@ -9,6 +10,32 @@ def test_sub():
 def test_sub_2():
     text = "Python,Haskell,Scala,Rust"
     assert evaluate('sub(",")', data=[text]) == ["PythonHaskellScalaRust"]
+
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['replace("cool", "dope")', ['Pretty cool']],
+            ['Pretty dope']
+        ),
+
+        # Optional count param should work on the first n patterns encountered.
+        (
+            ['replace("bb", "xx", 2)', ['bbb bbb bbb']],
+            ['xxb xxb bbb']
+        ),
+
+        # Regular expressions won't work on `replace`.
+        (
+            ['replace("t+", "xx")', ['Regex Attempt']],
+            ['Regex Attempt']
+        ),
+    ]
+)
+def test_replace(test_input, expected):
+    assert evaluate(*test_input) == expected
+
 
 def test_encode():
     text = "ἀἐἠἰὀὐὠὰᾀᾐ"
