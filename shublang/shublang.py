@@ -75,6 +75,19 @@ def replace(iterable, old, new, count=None):
 
 
 @Pipe
+def format(iterable, template):
+    """Formats an iterable using a given string template
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param template: substring to be replaced
+    :type template: string
+    """
+    return (template.format(*x) for x in iterable)
+
+
+@Pipe
 def encode(iterable, encoding, errors='ignore'):
     return (x.encode(encoding, errors=errors) for x in iterable)
 
