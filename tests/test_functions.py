@@ -65,6 +65,26 @@ def test_decode():
            b'\xbe\x80\xe1\xbe\x90'
     assert evaluate('decode("UTF8")', data=[text]) == ["ἀἐἠἰὀὐὠὰᾀᾐ"]
 
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['split(",")', ['Python,Haskell,Scala,Rust']],
+            [['Python', 'Haskell', 'Scala', 'Rust']]
+        ),
+        
+        # maxsplit should limit the number of separations
+        (
+            ['split(",", 2)', ['Python,Haskell,Scala,Rust']],
+            [['Python', 'Haskell', 'Scala,Rust']]
+        ),
+    ]
+)
+def test_split(test_input, expected):
+    assert evaluate(*test_input) == expected
+
+
 def test_sanitize():
     text = ["Python \t\t\t\t",
             "<br/>Haskell",
