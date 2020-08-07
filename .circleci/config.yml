@@ -4,6 +4,17 @@
 #
 version: 2
 jobs:
+  toxify:
+    docker:
+      - image: themattrix/tox
+    steps:
+      - checkout
+      - run:
+          name: Run tests in supported Python versions
+          command: |
+            pip install tox tox-pyenv
+            pyenv local 3.5.3 3.6.0 3.7.0 3.8.0
+            tox
   build:
     docker:
       - image: circleci/python:3.6.1
@@ -26,9 +37,11 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
-      # Run tests
-      - run:
-          name: run tests
-          command: |
-            . venv/bin/activate
-            pip install tox && tox
+
+workflows:
+  version: 2
+
+  shublang:
+    jobs:
+      - toxify
+      - build
