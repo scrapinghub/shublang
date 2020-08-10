@@ -112,11 +112,13 @@ def test_append(test_input, expected):
             ['extend([1, 2, "3"])', ['A', 'B']],
             ['A', 'B', 1, 2, '3']
         ),
+
         # generators will also work
         (
             ['extend(range(3, 6))', ['A', 'B']],
             ['A', 'B', 3, 4, 5]
         ),
+
         # single strings are treated as iterables
         (
             ['extend("new")', ['A', 'B']],
