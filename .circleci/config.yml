@@ -32,3 +32,17 @@ jobs:
           command: |
             . venv/bin/activate
             py.test
+            
+      - run:
+          command: |
+            set -x
+            sudo pip install awscli
+            sed -i "s/^__VERSION__ = .*/__VERSION__ = \'git.${CIRCLE_BRANCH/\//\\/}.${CIRCLE_SHA1:0:7}\'/" setup.py
+            sudo python setup.py sdist bdist_wheel
+            aws s3 sync dist/ s3://pkgrepo.scrapinghub.com/python/packages/
+            tags=$(git tag -l --points-at $CIRCLE_SHA1)
+            for tag in $tags; do
+              sed -i "s/^__VERSION__ = .*/__VERSION__ = \'$tag\'/" setup.py
+              sudo python setup.py sdist bdist_wheel
+              aws s3 sync dist/ s3://pkgrepo.scrapinghub.com/python/packages/
+            done
