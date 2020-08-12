@@ -54,6 +54,43 @@ def test_replace(test_input, expected):
     assert evaluate(*test_input) == expected
 
 
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['format("Now Playing: {} and {}")', [['Rick', 'Morty']]],
+            ['Now Playing: Rick and Morty']
+        ),
+
+        # Ordering should be respected
+        (
+            ['format("{2}, {1}, and {0}")', [['a', 'b', 'c']]],
+            ['c, b, and a']
+        ),
+
+        # Lists of lists are aggregated into a list
+        (
+            ['format("{} and some value {}")', [[1, 2], ['x', 'y']]],
+            ['1 and some value 2', 'x and some value y']
+        ),
+
+        # Args could be repeated
+        (
+            ['format("{0}--{0}-{1}!")', [['Re', 'Remix']]],
+            ['Re--Re-Remix!']
+        ),
+
+        # Standard Formatting should work
+        (
+            ['format("{:.2f}")', [[7/3]]],
+            ['2.33']
+        ),
+    ]
+)
+def test_format(test_input, expected):
+    assert evaluate(*test_input) == expected
+
+
 def test_encode():
     text = "ἀἐἠἰὀὐὠὰᾀᾐ"
     assert evaluate('encode("UTF8")', data=[text]) ==\
