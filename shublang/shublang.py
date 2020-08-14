@@ -29,11 +29,91 @@ Alternatively, should this be handled in the traversal code?
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
+
 @Pipe
 def sub(iterable, pattern, repl=None):
-    if not repl:
-        repl = ""
+    """Replaces a substring with another substring using regular expressions.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param pattern: regular expression to match and be replaced
+    :type pattern: string
+
+    :param repl: (optional) the replacement substring
+    :type rep: string
+    """
+
+    repl = repl or ""
     return (re.sub(pattern, repl, x) for x in iterable)
+
+
+@Pipe
+def replace(iterable, old, new, count=None):
+    """Replaces a substring with another substring.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param old: substring to be replaced
+    :type old: string
+
+    :param new: the replacement substring
+    :type new: string
+
+    :param count: (optional) The first n substring occurrences to be replaced
+    :type count: int
+
+    NOTE: This doesn't support regular expressions which makes it safer and
+    easier. If you need regular expressions, make use :func:`sub` which supports
+    it.
+    """
+
+    if count:
+        return (x.replace(old, new, count) for x in iterable)
+    return (x.replace(old, new) for x in iterable)
+
+
+@Pipe
+def format(iterable, template):
+    """Formats an iterable using a given string template
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param template: substring to be replaced
+    :type template: string
+    """
+    return (template.format(*x) for x in iterable)
+
+
+@Pipe
+def append(iterable, data):
+    """Appends data to the iterable.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param data: any type of data to be appended
+    """
+
+    iterable.append(data)
+    return iterable
+
+
+@Pipe
+def extend(iterable, extension):
+    """Extends the iterable using another iterable.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param extension: contains the additional iterable to extend the current one
+    :param extension: iterable
+    """
+
+    iterable.extend(extension)
+    return iterable
 
 
 @Pipe
@@ -66,8 +146,25 @@ def find(iterable, sub, start=None, end=None):
     :type end: int
     """
 
-
     return (x.find(sub, start, end) for x in iterable)
+
+
+@Pipe
+def split(iterable, sep, maxsplit=-1):
+    """Returns a list of words in the string, using sep as the delimiter.
+    If maxsplit is given, at most maxsplit splits are done.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param sep: this is a delimiter. The string will be split by this separator.
+    :type sep: string
+
+    :param maxsplit: (optional) if given, there will be at most maxsplit splits.
+    :type maxsplit: int
+    """
+
+    return (x.split(sep, maxsplit) for x in iterable)
 
 
 @Pipe
