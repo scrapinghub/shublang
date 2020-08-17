@@ -148,6 +148,30 @@ def test_decode():
            b'\xbe\x80\xe1\xbe\x90'
     assert evaluate('decode("UTF8")', data=[text]) == ["ἀἐἠἰὀὐὠὰᾀᾐ"]
 
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        # should find at the entire string
+        (
+            ['find("th")', ['Python']],
+            [2]
+        ),
+
+        # should respect where the search starts
+        (
+            ['find("th", 3)', ['Python']],
+            [-1]
+        ),
+
+        # should respect where the search ends
+        (
+            ['find("th", 0, 1)', ['Python']],
+            [-1]
+        ),
+    ]
+)
+def test_find(test_input, expected):
+    assert evaluate(*test_input) == expected
 
 @pytest.mark.parametrize(
     "test_input,expected",
@@ -166,7 +190,6 @@ def test_decode():
 )
 def test_split(test_input, expected):
     assert evaluate(*test_input) == expected
-
 
 def test_sanitize():
     text = ["Python \t\t\t\t",
