@@ -150,6 +150,7 @@ def sanitize(iterable):
     # TODO change name and add other options
 
     iterable = (x.strip() for x in iterable)
+    iterable = (x for x in iterable if x)
     iterable = (re.sub(r'[\n\t\r\s]+', ' ', x) for x in iterable)
     iterable = (x.encode('ascii', errors='ignore').decode('ascii') for x in iterable)
     iterable = (replace_entities(x) for x in iterable)
