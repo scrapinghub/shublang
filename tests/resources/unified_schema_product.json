@@ -1,0 +1,121 @@
+{
+  "additionalProperty": [
+    {
+      "name": "amazon bestsellers rank",
+      "value": "1,746 in Computers & Accessories (See Top 100 in Computers & Accessories) #186 in Ink Cartridges"
+    },
+    {
+      "name": "asin",
+      "value": "B07VWYM7KX"
+    },
+    {
+      "name": "brand name",
+      "value": "Epson"
+    },
+    {
+      "name": "colour",
+      "value": "Black"
+    },
+    {
+      "name": "customer reviews",
+      "value": "73 customer ratings"
+    },
+    {
+      "name": "date first available",
+      "value": "2 Aug. 2019"
+    },
+    {
+      "name": "item weight",
+      "value": "59 g"
+    },
+    {
+      "name": "manufacturer part number",
+      "value": "EP66635"
+    },
+    {
+      "name": "model number",
+      "value": "603XL"
+    },
+    {
+      "name": "number of items",
+      "value": "1"
+    },
+    {
+      "name": "package dimensions",
+      "value": "14 x 9.5 x 2.3 cm"
+    },
+    {
+      "name": "price",
+      "value": "£31.19"
+    },
+    {
+      "name": "shipping weight",
+      "value": "59 g"
+    },
+    {
+      "name": "size",
+      "value": "One Size"
+    }
+  ],
+  "aggregateRating": {
+    "bestRating": 5,
+    "ratingValue": 4.4,
+    "reviewCount": 72
+  },
+  "ratingHistogram": [
+    {
+      "ratingValue": "5",
+      "ratingPercentage": 49
+    },
+    {
+      "ratingValue": "4",
+      "ratingPercentage": 12
+    },
+    {
+      "ratingValue": "3",
+      "ratingPercentage": 5
+    },
+    {
+      "ratingValue": "2",
+      "ratingPercentage": 2
+    },
+    {
+      "ratingValue": "1",
+      "ratingPercentage": 4
+    }
+  ],
+  "brand": "Epson",
+  "breadcrumbs": [
+    {
+      "link": "https://www.amazon.co.uk/b/ref=dp_bc_aui_C_1/261-4427288-0767136?ie=UTF8&node=17477983031",
+      "name": "Printers & Accessories"
+    },
+    {
+      "link": "https://www.amazon.co.uk/b/ref=dp_bc_aui_C_2/261-4427288-0767136?ie=UTF8&node=430440031",
+      "name": "Printer Accessories"
+    },
+    {
+      "link": "https://www.amazon.co.uk/Ink-Cartridges/b/ref=dp_bc_aui_C_3/261-4427288-0767136?ie=UTF8&node=430492031",
+      "name": "Ink Cartridges"
+    }
+  ],
+  "description": "This Epson Starfish 603XL Black Ink Cartridge is for use in Epson Expression Home XP-2100, XP-2105, XP-3100, XP3105, XP-4100, XP-4105, WorkForce WF-2810DWF, WF-2830DWF, WF-2835DWF and WF-2850DWF inkjet printers. The cartridge contains 8.9ml of ink, with a high print yield of up to 500 pages. This pack contains 1 black ink cartridge.",
+  "gtin": null,
+  "images": [
+    "https://images-na.ssl-images-amazon.com/images/I/6177Iwq1r8L._AC_SL1000_.jpg"
+  ],
+  "mainImage": "https://images-na.ssl-images-amazon.com/images/I/6177Iwq1r8L._AC_SL1000_.jpg",
+  "mpn": "EP66635",
+  "name": "Epson Original Ink Cartridge Compatible with Expression Home/Workforce Series, 500 Pages, Black, One Size, 603XL",
+  "offers": [
+    {
+      "availability": "InStock",
+      "currency": "£",
+      "price": "31.19",
+      "regularPrice": "31.19"
+    }
+  ],
+  "probability": 0.9877380132675171,
+  "sku": null,
+  "url": "https://www.amazon.co.uk/dp/B07VWYM7KX"
+}
