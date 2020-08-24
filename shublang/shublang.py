@@ -232,6 +232,10 @@ def bool(iterable):
     return (builtins.bool(x) for x in iterable)
 
 @Pipe
+def str(iterable):
+    return (builtins.str(x) for x in iterable)
+
+@Pipe
 def float(iterable):
     return (builtins.float(x) for x in iterable)
 
@@ -294,7 +298,7 @@ def date_format(iterable, fmt):
 
 @Pipe
 def extract_price(iterable):
-    return (str(Price.fromstring(item).amount) for item in iterable)
+    return (builtins.str(Price.fromstring(item).amount) for item in iterable)
 
 @Pipe
 def extract_currency(iterable):
