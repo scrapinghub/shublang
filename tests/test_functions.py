@@ -8,6 +8,27 @@ from shublang import evaluate
     "test_input,expected",
     [
         (
+            ['str', [1, 2, 3]],
+            ['1', '2', '3']
+        ),
+        (
+            ['str', [1.1, 2.2, 3.3]],
+            ['1.1', '2.2', '3.3']
+        ),
+        (
+            ['str', ['1', '2', '3']],
+            ['1', '2', '3']
+        ),
+    ]
+)
+def test_str(test_input, expected):
+    assert evaluate(*test_input) == expected
+
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
             ['sub(",", " ")', ['Python,Haskell,Scala,Rust']],
             ['Python Haskell Scala Rust']
         ),
