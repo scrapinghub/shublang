@@ -241,7 +241,7 @@ def bool(iterable):
 
 
 @Pipe
-def str(iterable):
+def string(iterable):
     return (builtins.str(x) for x in iterable)
 
 
