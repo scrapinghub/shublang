@@ -324,3 +324,25 @@ def test_currency_1():
 
 def test_currency_2():
     assert evaluate('extract_currency', data=['$1,199.00']) == ['$']
+
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['join("")', ['A', 'B']],
+            'AB'
+        ),
+        (
+            ['join("")', ("A", "B")],
+            'AB'
+        ),
+        (
+            ['join("")', (1, 2)],
+            '12'
+        ),
+
+    ]
+)
+def test_join(test_input, expected):
+    assert evaluate(*test_input) == expected

@@ -188,9 +188,11 @@ def xpath_getall(iterable, pred):
 def xpath_get(iterable, pred):
     return (Selector(x).xpath(pred).get() for x in iterable)
 
+
 @Pipe
 def css_getall(iterable, pred):
     return (Selector(x).css(pred).getall() for x in iterable)
+
 
 @Pipe
 def css_get(iterable, pred):
@@ -201,13 +203,16 @@ def css_get(iterable, pred):
 def jmespath(iterable, query):
     return (jp.search(query, x) for x in iterable)
 
+
 @Pipe
 def any(iterable):
     return builtins.any(iterable)
 
+
 @Pipe
 def all(iterable):
     return builtins.all(iterable)
+
 
 @Pipe
 def exists(iterable, pred):
@@ -216,6 +221,7 @@ def exists(iterable, pred):
     else:
         return False
 
+
 @Pipe
 def none(iterable, pred):
     if pred not in iterable:
@@ -223,17 +229,21 @@ def none(iterable, pred):
     else:
         return False
 
+
 @Pipe
 def length(iterable):
     return len(iterable)
+
 
 @Pipe
 def bool(iterable):
     return (builtins.bool(x) for x in iterable)
 
+
 @Pipe
 def str(iterable):
     return (builtins.str(x) for x in iterable)
+
 
 @Pipe
 def float(iterable):
@@ -244,21 +254,26 @@ def float(iterable):
 def int(iterable):
     return (builtins.int(x) for x in iterable)
 
+
 @Pipe
 def abs(iterable):
     return (builtins.abs(x) for x in iterable)
+
 
 @Pipe
 def ceil(iterable):
     return (math.ceil(x) for x in iterable)
 
+
 @Pipe
 def round(iterable, pred):
     return (builtins.round(x, pred) for x in iterable)
 
+
 @Pipe
 def join(iterable, separator=", "):
-    return separator.join(builtins.map(str, iterable))
+    return separator.join(builtins.map(builtins.str, iterable))
+
 
 @Pipe
 def capitalize(iterable):
@@ -274,13 +289,16 @@ def isdigit(iterable):
 def isdecimal(iterable):
     return (x.isdecimal() for x in iterable)
 
+
 @Pipe
 def startswith(iterable, pred):
     return (x.startswith(pred) for x in iterable)
 
+
 @Pipe
 def endswith(iterable, pred):
     return (x.endswith(pred) for x in iterable)
+
 
 @Pipe
 def re_search(iterable, pattern):
@@ -288,24 +306,30 @@ def re_search(iterable, pattern):
     iterable =  builtins.map(lambda x: re.search(pattern, x), iterable)
     return (x.groups() if x else None for x in iterable)
 
+
 @Pipe
 def json_loads(iterable):
     return (json.loads(x) for x in iterable)
+
 
 @Pipe
 def date_format(iterable, fmt):
     return (dateparser.parse(item).strftime(fmt) for item in iterable)
 
+
 @Pipe
 def extract_price(iterable):
     return (builtins.str(Price.fromstring(item).amount) for item in iterable)
+
 
 @Pipe
 def extract_currency(iterable):
     return (Price.fromstring(item).currency for item in iterable)
 
+
 filter = where
 map = select
+
 
 def evaluate(expression, data):
     # TODO use StatementParser.is_safe before evaluating code.
