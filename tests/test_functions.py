@@ -8,15 +8,15 @@ from shublang import evaluate
     "test_input,expected",
     [
         (
-            ['string', [1, 2, 3]],
+            ['str', [1, 2, 3]],
             ['1', '2', '3']
         ),
         (
-            ['string', [1.1, 2.2, 3.3]],
+            ['str', [1.1, 2.2, 3.3]],
             ['1.1', '2.2', '3.3']
         ),
         (
-            ['string', ['1', '2', '3']],
+            ['str', ['1', '2', '3']],
             ['1', '2', '3']
         ),
     ]
@@ -324,3 +324,25 @@ def test_currency_1():
 
 def test_currency_2():
     assert evaluate('extract_currency', data=['$1,199.00']) == ['$']
+
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['join("")', ['A', 'B']],
+            'AB'
+        ),
+        (
+            ['join("")', ("A", "B")],
+            'AB'
+        ),
+        (
+            ['join("")', (1, 2)],
+            '12'
+        ),
+
+    ]
+)
+def test_join(test_input, expected):
+    assert evaluate(*test_input) == expected

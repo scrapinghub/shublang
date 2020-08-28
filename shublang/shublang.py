@@ -241,7 +241,7 @@ def bool(iterable):
 
 
 @Pipe
-def string(iterable):
+def str(iterable):
     return (builtins.str(x) for x in iterable)
 
 
@@ -272,7 +272,7 @@ def round(iterable, pred):
 
 @Pipe
 def join(iterable, separator=", "):
-    return separator.join(builtins.map(str, iterable))
+    return separator.join(builtins.map(builtins.str, iterable))
 
 
 @Pipe
