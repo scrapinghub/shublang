@@ -10,6 +10,7 @@ import logging
 import dateparser
 from price_parser import Price
 import types
+from urllib import parse
 
 """
 Conventions
@@ -325,6 +326,11 @@ def extract_price(iterable):
 @Pipe
 def extract_currency(iterable):
     return (Price.fromstring(item).currency for item in iterable)
+
+
+@Pipe
+def urljoin(iterable, base):
+    return (parse.urljoin(base, url) for url in iterable)
 
 
 filter = where

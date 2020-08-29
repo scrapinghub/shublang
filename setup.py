@@ -4,13 +4,12 @@ exclude = ['examples']
 
 setup(
     name='shublang',
-    version='0.2.0',
+    version='0.2.1',
     license='BSD',
     description='Shublang - Data Extraction DSL',
     author='Akshay',
     author_email='akshay@scrapinghub.com',
     packages=find_packages(exclude=exclude),
-    #package_data={'shublang': ['*.py']},
     include_package_data=True,
     entry_points={
         'console_scripts': [
