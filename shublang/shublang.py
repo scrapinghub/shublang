@@ -335,7 +335,7 @@ def urljoin(iterable, base):
 @Pipe
 def identity(iterable, element):
     """ Return the same element is passed as parameter."""
-    return element
+    return (element)
 
 
 filter = where
