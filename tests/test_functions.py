@@ -400,3 +400,27 @@ def test_join(test_input, expected):
 )
 def test_urljoin(test_input, expected):
     assert evaluate(*test_input) == expected
+
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            ['identity(True)',
+             [10, 'far', ['boo', 3]]],
+                True,
+        ),
+        (
+            ['identity("InStock")',
+             ["In Stock.", "Only 3 in Stock", "Stock Ok"]],
+            "InStock",
+        ),
+        (
+            ['identity((1,2,3,4,5))',
+             "foo"],
+            (1,2,3,4,5),
+        ),
+    ]
+)
+
+def test_identity(test_input, expected):
+    assert evaluate(*test_input) == expected

@@ -130,7 +130,7 @@ def decode(iterable, encoding):
 @Pipe
 def find(iterable, sub, start=None, end=None):
     """Returns the lowest index in the string where the sub is found.
-    If specified, the start and end params serve to slice the string 
+    If specified, the start and end params serve to slice the string
     where sub should be searched.
 
     :param iterable: collection of data to transform
@@ -331,6 +331,11 @@ def extract_currency(iterable):
 @Pipe
 def urljoin(iterable, base):
     return (parse.urljoin(base, url) for url in iterable)
+
+@Pipe
+def identity(iterable, element):
+    """ Return the same element is passed as parameter."""
+    return (element)
 
 
 filter = where
