@@ -11,6 +11,9 @@ import dateparser
 from price_parser import Price
 import types
 from urllib import parse
+import logging
+
+LOG = logging.getLogger(__name__)
 
 """
 Conventions
@@ -346,7 +349,16 @@ def evaluate(expression, data):
     # TODO use StatementParser.is_safe before evaluating code.
     # if StatementParser.is_safe(expression):
     # FIXME DANGEROUS!! Only for POC. This needs to be reimplemented using Lark.
-    data = eval(f'data|{expression}')
+    try:
+        data = eval(f'data|{expression}')
+    except (TypeError,
+            ValueError,
+            IndexError,
+            KeyError,
+            ZeroDivisionError,
+            ArithmeticError,
+            NameError):
+
     if isinstance(data, (types.GeneratorType, builtins.map)):
         data = list(data)
     return data
