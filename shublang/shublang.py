@@ -11,6 +11,7 @@ import dateparser
 from price_parser import Price
 import types
 from urllib import parse
+from urllib.parse import urlparse
 
 """
 Conventions
@@ -337,6 +338,25 @@ def identity(iterable, element):
     """ Return the same element is passed as parameter."""
     return (element)
 
+@Pipe
+def urlparse_netloc(iterable):
+    return (urlparse(url).netloc for url in iterable)
+
+@Pipe
+def urlparse_params(iterable):
+    return (urlparse(url).params for url in iterable)
+
+@Pipe
+def urlparse_path(iterable):
+    return (urlparse(url).path for url in iterable)
+
+@Pipe
+def urlparse_query(iterable):
+    return (urlparse(url).query for url in iterable)
+
+@Pipe
+def urlparse_scheme(iterable):
+    return (urlparse(url).scheme for url in iterable)
 
 filter = where
 map = select
