@@ -7,6 +7,7 @@ from shublang import evaluate
 @pytest.mark.parametrize(
     "test_input,expected",
     [
+        # if a mapping is not found, return the value itself
         (
             [
                 'map_value({"This is foo": "foo", "This is bar": "bar"})', 
@@ -14,6 +15,8 @@ from shublang import evaluate
             ],
             ['foo', 'This is not bar']
         ),
+
+        # usual mapping
         (
             [
                 'map_value({"1": "Available", "2": "Unavailable"})', 
@@ -21,17 +24,21 @@ from shublang import evaluate
             ],
             ['Available', 'Unavailable']
         ),
+
+        # map string to number
         (
             [
-                'map_value({"InStock": "1", "OutOfStock": "2"})', 
+                'map_value({"InStock": 1, "OutOfStock": 2})', 
                 ['OutOfStock', 'InStock']
             ],
-            ['2', '1']
+            [2, 1]
         ),
+
+        # map number to string
         (
             [
-                'map_value({1: "Online", 2: "Offline"})', 
-                [1, 2]
+                'map_value({0: "Online", 1: "Offline"})', 
+                [0, 1]
             ],
             ['Online', 'Offline']
         )
