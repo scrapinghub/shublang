@@ -32,6 +32,23 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
 @Pipe
+def map_value(iterable, rules_dict):
+    """Maps an input text to an output according to the map settings
+    configured at rules_dict.
+
+    :param iterable: collection of data to transform
+    :type iterable: list
+
+    :param rules_dict: rules dictionary where the key should be the 
+    exactly text to look for and the value should be the desired output
+    :type rules_dict: dict
+
+    """
+
+    return (rules_dict.get(x, x) for x in iterable)
+
+
+@Pipe
 def sub(iterable, pattern, repl=None):
     """Replaces a substring with another substring using regular expressions.
 
