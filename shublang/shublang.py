@@ -11,7 +11,6 @@ import dateparser
 from price_parser import Price
 import types
 from urllib import parse
-from urllib.parse import urlparse
 
 """
 Conventions
@@ -340,23 +339,34 @@ def identity(iterable, element):
 
 @Pipe
 def urlparse_netloc(iterable):
-    return (urlparse(url).netloc for url in iterable)
+    return (parse.urlparse(url).netloc for url in iterable)
 
 @Pipe
 def urlparse_params(iterable):
-    return (urlparse(url).params for url in iterable)
+    return (parse.urlparse(url).params for url in iterable)
 
 @Pipe
 def urlparse_path(iterable):
-    return (urlparse(url).path for url in iterable)
+    return (parse.urlparse(url).path for url in iterable)
 
 @Pipe
 def urlparse_query(iterable):
-    return (urlparse(url).query for url in iterable)
+    return (parse.urlparse(url).query for url in iterable)
 
 @Pipe
 def urlparse_scheme(iterable):
-    return (urlparse(url).scheme for url in iterable)
+    return (parse.urlparse(url).scheme for url in iterable)
+
+@Pipe
+def urlparse_fragment(iterable):
+    return (parse.urlparse(url).fragment for url in iterable)
+
+@Pipe
+def urlparse(iterable):
+    parsed_iterable = (parse.urlparse(url) for url in iterable)
+    parsed_iterable = ({"scheme": it.scheme, "netloc": it.netloc, "path": it.path,
+                        "params": it.params, "query": it.query, "fragment": it.fragment} for it in parsed_iterable)
+    return parsed_iterable
 
 filter = where
 map = select

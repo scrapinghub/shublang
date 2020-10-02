@@ -355,6 +355,36 @@ def test_currency_2():
     assert evaluate('extract_currency', data=['$1,199.00']) == ['$']
 
 
+def test_urlparse_netloc():
+    url = "https://scrapinghub.bamboohr.com/employees/performance/index.php?page=2107&subpage=1#123"
+    assert evaluate('urlparse_netloc', data=[url]) == ['scrapinghub.bamboohr.com']
+
+
+def test_urlparse_path():
+    url = "https://scrapinghub.bamboohr.com/employees/performance/index.php?page=2107&subpage=1#123"
+    assert evaluate('urlparse_path', data=[url]) == ['/employees/performance/index.php']
+
+
+def test_urlparse_query():
+    url = "https://scrapinghub.bamboohr.com/employees/performance/index.php?page=2107&subpage=1#123"
+    assert evaluate('urlparse_query', data=[url]) == ['page=2107&subpage=1']
+
+
+def test_urlparse_scheme():
+    url = "https://scrapinghub.bamboohr.com/employees/performance/index.php?page=2107&subpage=1#123"
+    assert evaluate('urlparse_scheme', data=[url]) == ['https']
+
+
+def test_urlparse_fragment():
+    url = "https://scrapinghub.bamboohr.com/employees/performance/index.php?page=2107&subpage=1#123"
+    assert evaluate('urlparse_fragment', data=[url]) == ['123']
+
+
+def test_urlparse():
+    url = "https://scrapinghub.bamboohr.com/employees/performance/index.php?page=2107&subpage=1#123"
+    assert list(evaluate('urlparse', data=[url])[0].keys()) == ['scheme', 'netloc', 'path', 'params', 'query', 'fragment']
+
+
 @pytest.mark.parametrize(
     "test_input,expected",
     [
