@@ -10,8 +10,8 @@ import logging
 import dateparser
 from price_parser import Price
 import types
-from urllib import parse
 from unidecode import unidecode
+from urllib import parse
 
 """
 Conventions
