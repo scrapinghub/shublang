@@ -10,6 +10,7 @@ import logging
 import dateparser
 from price_parser import Price
 import types
+from unidecode import unidecode
 from urllib import parse
 
 """
@@ -191,7 +192,7 @@ def sanitize(iterable):
 
     iterable = (x.strip() for x in iterable)
     iterable = (re.sub(r'[\n\t\r\s]+', ' ', x) for x in iterable)
-    iterable = (x.encode('ascii', errors='ignore').decode('ascii') for x in iterable)
+    iterable = (unidecode(x) for x in iterable)
     iterable = (replace_entities(x) for x in iterable)
     iterable = (remove_tags(x) for x in iterable)
     return iterable

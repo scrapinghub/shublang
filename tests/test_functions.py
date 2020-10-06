@@ -266,6 +266,9 @@ def test_sanitize():
             "    Rust"]
     assert evaluate("sanitize", data=text) == ["Python", "Haskell", "Rust"]
 
+def test_sanitize_1():
+    text = [u"Checking unicode ko\u017eu\u0161\u010dek \t\t\t\t"]
+    assert evaluate("sanitize", data=text) == ["Checking unicode kozuscek"]
 
 def test_xpath_getall():
     html = '<div><li class="results"><ul>Skoda</ul><ul>Vauxhall</ul><ul>Peugot</ul></li></div>'

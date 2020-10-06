@@ -36,5 +36,6 @@ setup(
         'parsel >= 1.5.2',
         'dateparser >= 0.7.2',
         'price-parser >= 0.3.2',
+        'unidecode >= 0.4.20'
     ]
 )
