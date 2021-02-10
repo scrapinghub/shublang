@@ -10,7 +10,7 @@ from shublang import evaluate
         # if a mapping is not found, return the value itself
         (
             [
-                'map_value({"This is foo": "foo", "This is bar": "bar"})', 
+                'map_value({"This is foo": "foo", "This is bar": "bar"})',
                 ["This is foo", "This is not bar"]
             ],
             ['foo', 'This is not bar']
@@ -19,7 +19,7 @@ from shublang import evaluate
         # usual mapping
         (
             [
-                'map_value({"1": "Available", "2": "Unavailable"})', 
+                'map_value({"1": "Available", "2": "Unavailable"})',
                 ['1', '2']
             ],
             ['Available', 'Unavailable']
@@ -28,7 +28,7 @@ from shublang import evaluate
         # map string to number
         (
             [
-                'map_value({"InStock": 1, "OutOfStock": 2})', 
+                'map_value({"InStock": 1, "OutOfStock": 2})',
                 ['OutOfStock', 'InStock']
             ],
             [2, 1]
@@ -37,7 +37,7 @@ from shublang import evaluate
         # map number to string
         (
             [
-                'map_value({0: "Online", 1: "Offline"})', 
+                'map_value({0: "Online", 1: "Offline"})',
                 [0, 1]
             ],
             ['Online', 'Offline']
@@ -268,7 +268,10 @@ def test_sanitize():
 
 def test_sanitize_1():
     text = [u"Checking unicode ko\u017eu\u0161\u010dek \t\t\t\t"]
-    assert evaluate("sanitize", data=text) == ["Checking unicode kozuscek"]
+    assert evaluate("sanitize(ascii_safe=True)", data=text) == ["Checking unicode kozuscek"]
+
+    text = [u"Checking unicode ko\u017eu\u0161\u010dek \t\t\t\t"]
+    assert evaluate("sanitize", data=text) == ["Checking unicode kožušček"]
 
 def test_xpath_getall():
     html = '<div><li class="results"><ul>Skoda</ul><ul>Vauxhall</ul><ul>Peugot</ul></li></div>'
