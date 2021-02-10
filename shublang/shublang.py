@@ -187,13 +187,10 @@ def split(iterable, sep, maxsplit=-1):
 
 
 @Pipe
-def sanitize(iterable, ascii_safe=False):
+def sanitize(iterable):
     # TODO change name and add other options
-
     iterable = (x.strip() for x in iterable)
     iterable = (re.sub(r'[\n\t\r\s]+', ' ', x) for x in iterable)
-    if ascii_safe:
-        iterable = (unidecode(x) for x in iterable)
     iterable = (replace_entities(x) for x in iterable)
     iterable = (remove_tags(x) for x in iterable)
     return iterable
@@ -386,6 +383,10 @@ def urlparse(iterable):
     parsed_iterable = ({"scheme": it.scheme, "netloc": it.netloc, "path": it.path,
                         "params": it.params, "query": it.query, "fragment": it.fragment} for it in parsed_iterable)
     return parsed_iterable
+
+@Pipe
+def ascii_safe(iterable):
+    return (unidecode(x) for x in iterable)
 
 filter = where
 map = select
