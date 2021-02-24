@@ -1,13 +1,5 @@
 version: 2
 jobs:
-  python3.5:
-    docker:
-      - image: python:3.5
-    steps:
-      - checkout
-      - run: |
-          pip install tox
-          tox
   python3.6:
     docker:
       - image: python:3.6
