@@ -4,13 +4,13 @@ exclude = ['examples']
 
 setup(
     name='shublang',
-    version='0.1.2',
+    version='0.2.2',
     license='BSD',
+    author='Akshay Philar',
+    author_email='akshayphilar@gmail.com',
     description='Shublang - Data Extraction DSL',
-    author='Akshay',
-    author_email='akshay@scrapinghub.com',
+    url="https://github.com/scrapinghub/shublang",
     packages=find_packages(exclude=exclude),
-    #package_data={'shublang': ['*.py']},
     include_package_data=True,
     entry_points={
         'console_scripts': [
@@ -29,6 +29,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
+    python_requires='>=3.6',
     install_requires=[
         'pipe >= 1.5.0',
         'jmespath >= 0.9.4',
@@ -36,5 +37,6 @@ setup(
         'parsel >= 1.5.2',
         'dateparser >= 0.7.2',
         'price-parser >= 0.3.2',
+        'unidecode >= 0.4.20'
     ]
 )
