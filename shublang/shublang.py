@@ -40,7 +40,7 @@ def map_value(iterable, rules_dict):
     :param iterable: collection of data to transform
     :type iterable: list
 
-    :param rules_dict: rules dictionary where the key should be the 
+    :param rules_dict: rules dictionary where the key should be the
     exactly text to look for and the value should be the desired output
     :type rules_dict: dict
 
@@ -189,10 +189,8 @@ def split(iterable, sep, maxsplit=-1):
 @Pipe
 def sanitize(iterable):
     # TODO change name and add other options
-
     iterable = (x.strip() for x in iterable)
     iterable = (re.sub(r'[\n\t\r\s]+', ' ', x) for x in iterable)
-    iterable = (unidecode(x) for x in iterable)
     iterable = (replace_entities(x) for x in iterable)
     iterable = (remove_tags(x) for x in iterable)
     return iterable
@@ -385,6 +383,10 @@ def urlparse(iterable):
     parsed_iterable = ({"scheme": it.scheme, "netloc": it.netloc, "path": it.path,
                         "params": it.params, "query": it.query, "fragment": it.fragment} for it in parsed_iterable)
     return parsed_iterable
+
+@Pipe
+def ascii_safe(iterable):
+    return (unidecode(x) for x in iterable)
 
 filter = where
 map = select
