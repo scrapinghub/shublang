@@ -20,3 +20,4 @@ unidecode==0.4.20
 w3lib==1.21.0
 wcwidth==0.1.7
 zipp==0.6.0
+tox

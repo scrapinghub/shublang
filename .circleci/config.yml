@@ -1,34 +1,35 @@
-# Python CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-python/ for more details
-#
 version: 2
 jobs:
-  build:
+  python3.6:
     docker:
-      - image: circleci/python:3.6.1
+      - image: python:3.6
     steps:
       - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-            pip install -r requirements-dev.txt
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
-      # Run tests
-      - run:
-          name: run tests
-          command: |
-            . venv/bin/activate
-            py.test
+      - run: |
+          pip install tox
+          tox
+  python3.7:
+    docker:
+      - image: python:3.7
+    steps:
+      - checkout
+      - run: |
+          pip install tox
+          tox
+  python3.8:
+    docker:
+      - image: python:3.8
+    steps:
+      - checkout
+      - run: |
+          pip install tox
+          tox
+
+workflows:
+  version: 2
+
+  shublang:
+    jobs:
+      - python3.6
+      - python3.7
+      - python3.8
